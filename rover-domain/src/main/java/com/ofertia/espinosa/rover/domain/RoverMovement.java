@@ -1,5 +1,7 @@
 package com.ofertia.espinosa.rover.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Class RoverMovement.
@@ -9,14 +11,14 @@ package com.ofertia.espinosa.rover.domain;
 public class RoverMovement {
 
 	/** The rover movement rotation. */
-	private RoverMovementRotation roverMovementRotation;
+	private List<RoverRotation> roverRotations;
 	
 	/**
 	 * Instantiates a new rover movement.
 	 */
 	public RoverMovement() {
 		super();
-		this.roverMovementRotation = RoverMovementRotation.STRAIGHT;
+		this.roverRotations = new ArrayList<RoverRotation>();
 	}
 
 	/**
@@ -24,18 +26,27 @@ public class RoverMovement {
 	 *
 	 * @param roverMovementRotation the rover movement rotation
 	 */
-	public RoverMovement(RoverMovementRotation roverMovementRotation) {
+	public RoverMovement(List<RoverRotation> roverRotations) {
 		super();
-		this.roverMovementRotation = roverMovementRotation;
+		this.roverRotations = roverRotations;
 	}
-
+	
+	/**
+	 * Adds the rover movement rotation.
+	 *
+	 * @param roverMovementRotation the rover movement rotation
+	 */
+	public void addRoverRotation(RoverRotation roverMovementRotation) {
+		this.roverRotations.add(roverMovementRotation);
+	}
+	
 	/**
 	 * Gets the rover movement rotation.
 	 *
 	 * @return the rover movement rotation
 	 */
-	public RoverMovementRotation getRoverMovementRotation() {
-		return roverMovementRotation;
+	public List<RoverRotation> getRoverRotations() {
+		return roverRotations;
 	}
 
 	/**
@@ -43,9 +54,7 @@ public class RoverMovement {
 	 *
 	 * @param roverMovementRotation the new rover movement rotation
 	 */
-	public void setRoverMovementRotation(RoverMovementRotation roverMovementRotation) {
-		this.roverMovementRotation = roverMovementRotation;
+	public void setRoverRotation(List<RoverRotation> roverRotations) {
+		this.roverRotations = roverRotations;
 	}
-	
-	
 }

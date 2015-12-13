@@ -4,9 +4,11 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import com.ofertia.espinosa.rover.domain.RoverLocation;
 import com.ofertia.espinosa.rover.domain.RoverMovement;
-import com.ofertia.espinosa.rover.domain.RoverMovementRotation;
+import com.ofertia.espinosa.rover.domain.RoverRotation;
 import com.ofertia.espinosa.rover.domain.RoverOrientation;
 import com.orfertia.espinosa.rover.controller.RoverLocationController;
 import com.orfertia.espinosa.rover.controller.impl.RoverLocationControllerImpl;
@@ -40,7 +42,7 @@ public class RoverLocationControllerTest {
 	@Test
 	public void whenRoverOrientationIsEastAndIsAppliedARightMovementThenSouthOrientationIsReturned() {
 		roverOrientation = RoverOrientation.EAST;
-		roverOrientation = roverLocationController.applyRoverRotation(roverOrientation, RoverMovementRotation.RIGTH);
+		roverOrientation = roverLocationController.applyRoverRotation(roverOrientation, Arrays.asList(RoverRotation.RIGHT));
 		assertSame(roverOrientation, RoverOrientation.SOUTH);
 	}
 	
@@ -50,7 +52,7 @@ public class RoverLocationControllerTest {
 	@Test
 	public void whenRoverOrientationIsSouthAndIsAppliedARightMovementThenWestOrientationIsReturned() {
 		roverOrientation = RoverOrientation.SOUTH;
-		roverOrientation = roverLocationController.applyRoverRotation(roverOrientation, RoverMovementRotation.RIGTH);
+		roverOrientation = roverLocationController.applyRoverRotation(roverOrientation, Arrays.asList(RoverRotation.RIGHT));
 		assertSame(roverOrientation, RoverOrientation.WEST);
 	}
 	
@@ -71,7 +73,7 @@ public class RoverLocationControllerTest {
 	@Test
 	public void whenRoverLocationIsZeroZeroWithEastOrientationAndLefttMoventIsAppliedThenRoverLocationZeroOneIsReturned() {
 		roverLocation = new RoverLocation(0, 0, RoverOrientation.EAST);
-		RoverMovement roverMovement = new RoverMovement(RoverMovementRotation.LEFT);
+		RoverMovement roverMovement = new RoverMovement(Arrays.asList(RoverRotation.LEFT));
 		roverLocation = roverLocationController.applyMovement(roverLocation, roverMovement);
 		assertEquals(new RoverLocation(0, 1, RoverOrientation.NORTH), roverLocation);
 	}

@@ -3,7 +3,7 @@ package com.ofertia.espinosa.rover.domain;
 /**
  * The Class RoverLocation.
  */
-public class RoverLocation {
+public class RoverLocation implements Cloneable {
 
 	/** The x position. */
 	private int xPosition;
@@ -109,7 +109,9 @@ public class RoverLocation {
 			return false;
 		return true;
 	}
-	
-	
-	
+
+	public RoverLocation clone() {
+		RoverLocation roverLocation = new RoverLocation(this.getxPosition(), this.getyPosition(), this.getRoverOrientation());
+		return roverLocation;
+	}
 }

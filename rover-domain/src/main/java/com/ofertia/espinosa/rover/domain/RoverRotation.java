@@ -4,15 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The Enum RoverMovementRotation.
+ * The Enum RoverRotation.
+ * 
+ * @author David Espinosa
  */
-public enum RoverMovementRotation {
+public enum RoverRotation {
 
 	/** The left. */
 	LEFT (-1),
 	
-	/** The rigth. */
-	RIGTH (1),
+	/** The right. */
+	RIGHT (1),
 	
 	/** The none. */
 	STRAIGHT (0);
@@ -20,12 +22,15 @@ public enum RoverMovementRotation {
 	/** The value. */
 	private final int value;
 	
+	/** The Constant map. */
+	private static final Map<Integer, RoverRotation> map = new HashMap<Integer, RoverRotation>();
+	
 	/**
 	 * Instantiates a new rover movement rotation.
 	 *
 	 * @param value the value
 	 */
-	RoverMovementRotation(final int value) {
+	RoverRotation(final int value) {
 		this.value = value;
 	}
 	
@@ -37,16 +42,20 @@ public enum RoverMovementRotation {
 	public int getValue() {
 		return value;
 	}
-	
-	private static final Map<Integer, RoverMovementRotation> map = new HashMap<Integer, RoverMovementRotation>();
-	
+		
 	static {
-		for (RoverMovementRotation roverMovementRotation : RoverMovementRotation.values()) {
+		for (RoverRotation roverMovementRotation : RoverRotation.values()) {
 			map.put(roverMovementRotation.getValue(), roverMovementRotation);
 		}
 	}
 	
-	public static RoverMovementRotation valueOf(int value) {
+	/**
+	 * Value of.
+	 *
+	 * @param value the value
+	 * @return the rover rotation
+	 */
+	public static RoverRotation valueOf(int value) {
 		return map.get(value);
 	}
 }

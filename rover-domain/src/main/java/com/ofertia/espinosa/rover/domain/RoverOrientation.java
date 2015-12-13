@@ -20,6 +20,9 @@ public enum RoverOrientation {
 	/** The west. */
 	WEST (0);
 	
+	/** The Constant map. */
+	private static final Map<Integer, RoverOrientation> map = new HashMap<Integer, RoverOrientation>();
+	
 	/** The value. */
 	private final int value;
 	
@@ -41,14 +44,18 @@ public enum RoverOrientation {
 		return value;
 	}
 	
-	private static final Map<Integer, RoverOrientation> map = new HashMap<Integer, RoverOrientation>();
-	
 	static {
 		for (RoverOrientation roverOrientation : RoverOrientation.values()) {
 			map.put(roverOrientation.getValue(), roverOrientation);
 		}
 	}
 	
+	/**
+	 * Value of integer.
+	 *
+	 * @param value the value
+	 * @return the rover orientation
+	 */
 	public static RoverOrientation valueOf(int value) {
 		return map.get(value);
 	}

@@ -1,16 +1,18 @@
 package com.orfertia.espinosa.rover.controller.impl;
 
-import java.util.Map;
+import java.util.List;
 
+import com.ofertia.espinosa.rover.domain.Plateau;
 import com.ofertia.espinosa.rover.domain.RoverLocation;
 import com.ofertia.espinosa.rover.domain.RoverMovement;
-import com.ofertia.espinosa.rover.domain.RoverMovementRotation;
+import com.ofertia.espinosa.rover.domain.RoverRotation;
 import com.ofertia.espinosa.rover.domain.RoverOrientation;
-import com.ofertia.espinosa.rover.domain.Plateau;
 import com.orfertia.espinosa.rover.controller.RoverLocationController;
 
 /**
  * The Class RoverLocationControllerImpl.
+ * 
+ * @author David Espinosa
  */
 public class RoverLocationControllerImpl implements RoverLocationController {
 
@@ -31,7 +33,7 @@ public class RoverLocationControllerImpl implements RoverLocationController {
 	 */
 	public RoverLocation applyMovement(RoverLocation roverLocation, RoverMovement roverMovement) {
 		
-		RoverOrientation newRoverOrientation = applyRoverRotation(roverLocation.getRoverOrientation(), roverMovement.getRoverMovementRotation());
+		RoverOrientation newRoverOrientation = applyRoverRotation(roverLocation.getRoverOrientation(), roverMovement.getRoverRotations());
 		roverLocation.setRoverOrientation(newRoverOrientation);
 		switch (newRoverOrientation) {
 		case WEST:
@@ -53,19 +55,30 @@ public class RoverLocationControllerImpl implements RoverLocationController {
 		return roverLocation;
 	}
 	
-	public RoverOrientation applyRoverRotation(RoverOrientation roverOrientation, RoverMovementRotation roverMovementRotation) {
+	
+	/* (non-Javadoc)
+	 * @see com.orfertia.espinosa.rover.controller.RoverLocationController#applyRoverRotation(com.ofertia.espinosa.rover.domain.RoverOrientation, com.ofertia.espinosa.rover.domain.RoverMovementRotation)
+	 */
+	@Override
+	public RoverOrientation applyRoverRotation(RoverOrientation roverOrientation, List<RoverRotation> roverMovementRotations) {
 		
-		RoverOrientation addaptedRoverOrientation;		
-		int newOrientationValue = roverOrientation.getValue()+roverMovementRotation.getValue();
-		addaptedRoverOrientation = RoverOrientation.valueOf(newOrientationValue%4);
+		RoverOrientation addaptedRoverOrientation = roverOrientation;		
+		for (RoverRotation roverMovementRotation: roverMovementRotations) {
+			int newOrientationValue = addaptedRoverOrientation.getValue()+roverMovementRotation.getValue();
+			addaptedRoverOrientation = RoverOrientation.valueOf(Math.floorMod(newOrientationValue,4));
+		}
 		return addaptedRoverOrientation;
 	}
 	
-	private boolean checkPlateau(RoverLocation roverLocation, Plateau roverPlateau) {
-		boolean checkPlateau = true;
+	/* (non-Javadoc)
+	 * @see com.orfertia.espinosa.rover.controller.RoverLocationController#existsPlateauCollision(com.ofertia.espinosa.rover.domain.RoverLocation, com.ofertia.espinosa.rover.domain.Plateau)
+	 */
+	@Override
+	public boolean existsPlateauCollision(RoverLocation roverLocation, Plateau roverPlateau) {
+		boolean checkPlateau = false;
 		
 		if ((roverLocation.getxPosition()>roverPlateau.getWidth())||(roverLocation.getyPosition()>roverPlateau.getHeight())) {
-			checkPlateau = false;
+			checkPlateau = true;
 		}
 		return checkPlateau;
 	}
