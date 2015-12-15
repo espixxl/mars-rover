@@ -15,6 +15,8 @@ import com.orfertia.espinosa.rover.exception.CollisionException;
 
 /**
  * The Class RoverMovementControllerImpl.
+ * 
+ * @author David Espinosa
  */
 public class RoverMovementControllerImpl implements RoverMovementController {
 

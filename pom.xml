@@ -8,6 +8,8 @@
   <modules>
   	<module>rover-controller</module>
   	<module>rover-domain</module>
+  	<module>socket-server</module>
+  	<module>rover-rest-server</module>
   </modules>
   
   <properties>
@@ -21,6 +23,11 @@
   			<artifactId>rover-domain</artifactId>
         	<version>1.0.0</version>
   		</dependency>
+  		<dependency>
+  			<groupId>ofertia.espinosa.mars-rover</groupId>
+  			<artifactId>rover-controller</artifactId>
+        	<version>1.0.0</version>
+  		</dependency>  		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

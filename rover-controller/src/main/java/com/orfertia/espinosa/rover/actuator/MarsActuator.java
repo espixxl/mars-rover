@@ -47,7 +47,7 @@ public class MarsActuator {
 	 * @param roverId the rover id
 	 * @param roverMovementSequence the rover movement sequence
 	 * @return the rover
-	 * @throws CollisionException 
+	 * @throws CollisionException the collision exception
 	 */
 	public Rover moveRover(int roverId, RoverMovementSequence roverMovementSequence) throws CollisionException {
 		Rover rover = mars.getRover(roverId);
@@ -76,5 +76,14 @@ public class MarsActuator {
 			throw new CollisionException(collisionedRovers);
 		}
 		return movedRover;
+	}
+
+	/**
+	 * Gets the mars.
+	 *
+	 * @return the mars
+	 */
+	public Mars getMars() {
+		return mars;
 	}
 }

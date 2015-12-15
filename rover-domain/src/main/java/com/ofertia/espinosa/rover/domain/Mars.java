@@ -14,21 +14,6 @@ public class Mars {
 		
 	/** The plateau. */
 	private Plateau plateau;
-	
-//	/** The instance. */
-//	private static Mars instance;
-	
-//	/**
-//	 * Gets the single instance of MarsImpl.
-//	 *
-//	 * @return single instance of MarsImpl
-//	 */
-//	public static synchronized Mars getInstance() {
-//		if (instance == null) {
-//			instance = new Mars();			
-//		}
-//		return instance;
-//	}
 
 	/**
 	 * Initialize plateau.

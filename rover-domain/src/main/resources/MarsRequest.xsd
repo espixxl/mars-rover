@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="MarsRequest">
+		<xs:annotation>
+			<xs:documentation>Mars Xml Request</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Plateau">
+					<xs:complexType>
+						<xs:attribute name="width" type="xs:int"/>
+						<xs:attribute name="height" type="xs:int"/>						
+					</xs:complexType>
+				</xs:element>
+				<xs:sequence>
+					<xs:element name="Rovers">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Rover" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:attribute name="id" type="xs:int"/>										
+										<xs:attribute name="xPosition" type="xs:int"/>
+										<xs:attribute name="yPosition" type="xs:int"/>
+										<xs:attribute name="orientation" type="xs:string"/>
+										<xs:attribute name="movement" type="xs:string"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
