@@ -1,54 +1,54 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>ofertia.espinosa.mars-rover</groupId>
-  <artifactId>mars-rover</artifactId>
-  <version>1.0.0</version>
-  <packaging>pom</packaging>
-  <name>Pom agregator</name>
-  <modules>
-  	<module>rover-controller</module>
-  	<module>rover-domain</module>
-  	<module>socket-server</module>
-  	<module>rover-rest-server</module>
-  	<module>rover-socket-server</module>
-  	<module>rover-client</module>
-  </modules>
-  
-  <properties>
-	  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  
-  <dependencyManagement>
-  	<dependencies>
-  		<dependency>
-  			<groupId>ofertia.espinosa.mars-rover</groupId>
-  			<artifactId>rover-domain</artifactId>
-        	<version>1.0.0</version>
-  		</dependency>
-  		<dependency>
-  			<groupId>ofertia.espinosa.mars-rover</groupId>
-  			<artifactId>rover-controller</artifactId>
-        	<version>1.0.0</version>
-  		</dependency>  		
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.8.1</version>
-		</dependency>  		
-  	</dependencies>
-  </dependencyManagement>
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ofertia.espinosa.mars-rover</groupId>
+	<artifactId>mars-rover</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<name>Pom agregator</name>
+	<modules>
+		<module>rover-controller</module>
+		<module>rover-domain</module>
+		<module>rover-rest-server</module>
+		<module>rover-socket-server</module>
+		<module>rover-client</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>ofertia.espinosa.mars-rover</groupId>
+				<artifactId>rover-domain</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>ofertia.espinosa.mars-rover</groupId>
+				<artifactId>rover-controller</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.8.1</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<build>
-	    <plugins>
-	        <plugin>
-	          <groupId>org.apache.maven.plugins</groupId>
-	          <artifactId>maven-compiler-plugin</artifactId>
-	          <version>3.1</version>
-	          <configuration>
-	            <source>1.7</source>
-	            <target>1.7</target>
-	          </configuration>
-	        </plugin>
-	    </plugins>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>
