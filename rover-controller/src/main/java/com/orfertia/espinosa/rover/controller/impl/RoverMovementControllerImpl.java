@@ -20,50 +20,67 @@ import com.orfertia.espinosa.rover.exception.CollisionException;
  */
 public class RoverMovementControllerImpl implements RoverMovementController {
 
-	private RoverLocationController roverLocationController = new RoverLocationControllerImpl();
-	
-	/* (non-Javadoc)
-	 * @see com.orfertia.espinosa.rover.controller.RoverMovementController#moveRover(com.ofertia.espinosa.rover.domain.Rover, com.ofertia.espinosa.rover.domain.RoverMovementSequence)
-	 */
-	@Override
-	public Rover moveRover(Rover rover, RoverMovementSequence roverMovementSequence, Plateau roverPlateau) throws CollisionException {
-		
-		Rover appliedMovementRover = (Rover)rover.clone();	
-		for (RoverMovement roverMovement: roverMovementSequence.getRoverMovements()) {
-			appliedMovementRover = moveRover(appliedMovementRover, roverMovement, roverPlateau);
-		}
-		return appliedMovementRover;
-	}
+    /** The rover location controller. */
+    private final RoverLocationController roverLocationController = new RoverLocationControllerImpl();
 
-	@Override
-	public Rover moveRover(Rover rover, RoverMovement roverMovement, Plateau roverPlateau) throws CollisionException {
-		
-		RoverLocation roverLocation = roverLocationController.applyMovement(rover.getRoverLocation(), roverMovement);
-		
-		if (roverLocationController.existsPlateauCollision(roverLocation, roverPlateau)) {
-			throw new CollisionException(roverLocation, roverPlateau);
-		}
-		rover.setRoverLocation(roverLocation);
-		return rover;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.orfertia.espinosa.rover.controller.RoverMovementController#moveRover(com.ofertia.espinosa.rover.domain.Rover,
+     * com.ofertia.espinosa.rover.domain.RoverMovementSequence)
+     */
+    @Override
+    public Rover moveRover(final Rover rover, final RoverMovementSequence roverMovementSequence, final Plateau roverPlateau)
+            throws CollisionException {
 
-	@Override
-	public List<Rover> getCollisionedRovers(Collection<Rover> rovers, Plateau plateau) {
-		
-		List<Rover> collisionedRovers = null;
-		Rover mapCollisions[][] = new Rover[plateau.getWidth()+1][plateau.getHeight()+1];		
-		
-		for (Rover rover: rovers) {
-			RoverLocation roverLocation = rover.getRoverLocation();		
-			Rover roverAtPosition = mapCollisions[roverLocation.getxPosition()][roverLocation.getyPosition()];
-			if ( roverAtPosition != null) {
-				collisionedRovers = Arrays.asList(roverAtPosition, rover);
-				break;
-			} else {
-				mapCollisions[roverLocation.getxPosition()][roverLocation.getyPosition()] = rover;
-			}
-		}
-		return collisionedRovers;
-	}
+        Rover appliedMovementRover = rover.clone();
+        for (final RoverMovement roverMovement : roverMovementSequence.getRoverMovements()) {
+            appliedMovementRover = this.moveRover(appliedMovementRover, roverMovement, roverPlateau);
+        }
+        return appliedMovementRover;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.orfertia.espinosa.rover.controller.RoverMovementController#moveRover(com.ofertia.espinosa.rover.domain.Rover,
+     * com.ofertia.espinosa.rover.domain.RoverMovement, com.ofertia.espinosa.rover.domain.Plateau)
+     */
+    @Override
+    public Rover moveRover(final Rover rover, final RoverMovement roverMovement, final Plateau roverPlateau) throws CollisionException {
+
+        final RoverLocation roverLocation = this.roverLocationController.applyMovement(rover.getRoverLocation(), roverMovement);
+
+        if (this.roverLocationController.existsPlateauCollision(roverLocation, roverPlateau)) {
+            throw new CollisionException(roverLocation, roverPlateau);
+        }
+        rover.setRoverLocation(roverLocation);
+        return rover;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.orfertia.espinosa.rover.controller.RoverMovementController#getCollisionedRovers(java.util.Collection,
+     * com.ofertia.espinosa.rover.domain.Plateau)
+     */
+    @Override
+    public List<Rover> getCollisionedRovers(final Collection<Rover> rovers, final Plateau plateau) {
+
+        List<Rover> collisionedRovers = null;
+        final Rover mapCollisions[][] = new Rover[plateau.getWidth() + 1][plateau.getHeight() + 1];
+
+        for (final Rover rover : rovers) {
+            final RoverLocation roverLocation = rover.getRoverLocation();
+            final Rover roverAtPosition = mapCollisions[roverLocation.getxPosition()][roverLocation.getyPosition()];
+            if (roverAtPosition != null) {
+                collisionedRovers = Arrays.asList(roverAtPosition, rover);
+                break;
+            } else {
+                mapCollisions[roverLocation.getxPosition()][roverLocation.getyPosition()] = rover;
+            }
+        }
+        return collisionedRovers;
+    }
 
 }

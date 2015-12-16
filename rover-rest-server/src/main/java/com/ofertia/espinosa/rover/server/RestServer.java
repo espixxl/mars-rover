@@ -9,13 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ofertia.espinosa.rover.domain.Mars;
 import com.ofertia.espinosa.rover.domain.Rover;
-import com.ofertia.espinosa.rover.jaxb.MarsUnmarshaller;
+import com.ofertia.espinosa.rover.jaxb.MarsMarshallerUtils;
 import com.ofertia.espinosa.rover.jaxb.request.MarsRequest;
 import com.ofertia.espinosa.rover.jaxb.response.MarsResponse;
 import com.orfertia.espinosa.rover.actuator.MarsActuator;
 import com.orfertia.espinosa.rover.exception.CollisionException;
 import com.orfertia.espinosa.rover.xml.XmlUtils;
-
 
 /**
  * The Class RestServer.
@@ -23,10 +22,10 @@ import com.orfertia.espinosa.rover.xml.XmlUtils;
  * @author David Espinosa
  */
 public class RestServer extends HttpServlet {
-	
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
-       
+
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
+
     /**
      * Instantiates a new rest server.
      *
@@ -36,61 +35,63 @@ public class RestServer extends HttpServlet {
         super();
     }
 
-	/**
-	 * Do get.
-	 *
-	 * @param request the request
-	 * @param response the response
-	 * @throws ServletException the servlet exception
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			MarsRequest marsRequest = MarsUnmarshaller.unmarshalXMLData(request.getInputStream());
-			MarsResponse marsResponse = createResponse(marsRequest);
-			String xmlResponse = MarsUnmarshaller.marshalMarsResponse(marsResponse);
-			response.getWriter().append(xmlResponse);
-		} catch (Exception e) {
+    /**
+     * Do get.
+     *
+     * @param request the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    @Override
+    protected void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
+        try {
+            final MarsRequest marsRequest = MarsMarshallerUtils.unmarshalXMLData(request.getInputStream());
+            final MarsResponse marsResponse = this.createResponse(marsRequest);
+            final String xmlResponse = MarsMarshallerUtils.marshalMarsResponse(marsResponse);
+            response.getWriter().append(xmlResponse);
+        } catch (final Exception e) {
 
-		}
-	}
+        }
+    }
 
-	/**
-	 * Do post.
-	 *
-	 * @param request the request
-	 * @param response the response
-	 * @throws ServletException the servlet exception
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			MarsRequest marsRequest = MarsUnmarshaller.unmarshalXMLData(request.getInputStream());
-			MarsResponse marsResponse = createResponse(marsRequest);
-			String xmlResponse = MarsUnmarshaller.marshalMarsResponse(marsResponse);
-			response.getWriter().append(xmlResponse);
-		} catch (Exception e) {
+    /**
+     * Do post.
+     *
+     * @param request the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    @Override
+    protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
+        try {
+            final MarsRequest marsRequest = MarsMarshallerUtils.unmarshalXMLData(request.getInputStream());
+            final MarsResponse marsResponse = this.createResponse(marsRequest);
+            final String xmlResponse = MarsMarshallerUtils.marshalMarsResponse(marsResponse);
+            response.getWriter().append(xmlResponse);
+        } catch (final Exception e) {
 
-		}
-	}
+        }
+    }
 
-	/**
-	 * Creates the response.
-	 *
-	 * @param marsRequest the mars request
-	 * @return the mars response
-	 * @throws CollisionException the collision exception
-	 */
-	private MarsResponse createResponse(MarsRequest marsRequest) throws CollisionException {
-		Mars mars = XmlUtils.createMarsFromMarsRequest(marsRequest);
-		MarsActuator marsActuator = new MarsActuator(mars);
-		for (Rover rover: mars.getRovers().values()) {
-			marsActuator.moveRover(rover.getRoverId(), rover.getRoverMovementSequence());
-		}
-		
-		MarsResponse marsResponse = XmlUtils.createXmlFromMars(marsActuator.getMars());
-		return marsResponse;
-	}
+    /**
+     * Creates the response.
+     *
+     * @param marsRequest the mars request
+     * @return the mars response
+     * @throws CollisionException the collision exception
+     */
+    protected MarsResponse createResponse(final MarsRequest marsRequest) throws CollisionException {
+        final Mars mars = XmlUtils.createMarsFromMarsRequest(marsRequest);
+        final MarsActuator marsActuator = new MarsActuator(mars);
+        for (final Rover rover : mars.getRovers().values()) {
+            marsActuator.moveRover(rover.getRoverId(), rover.getRoverMovementSequence());
+        }
+
+        final MarsResponse marsResponse = XmlUtils.createXmlFromMars(marsActuator.getMars());
+        return marsResponse;
+    }
 }
