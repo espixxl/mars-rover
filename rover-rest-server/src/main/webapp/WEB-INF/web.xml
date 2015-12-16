@@ -13,6 +13,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>RestServer</servlet-name>
-        <url-pattern>/RestServer</url-pattern>
-    </servlet-mapping>
+        <url-pattern></url-pattern>
+    </servlet-mapping>    
 </web-app>

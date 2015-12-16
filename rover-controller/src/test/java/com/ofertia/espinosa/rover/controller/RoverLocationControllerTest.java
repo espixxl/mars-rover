@@ -15,6 +15,8 @@ import com.orfertia.espinosa.rover.controller.impl.RoverLocationControllerImpl;
 
 /**
  * The Class RoverLocationControllerTest.
+ * 
+ * @author David Espinosa
  */
 public class RoverLocationControllerTest {
 

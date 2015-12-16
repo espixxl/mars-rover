@@ -14,12 +14,23 @@ import com.ofertia.espinosa.rover.domain.RoverLocation;
 import com.ofertia.espinosa.rover.domain.RoverOrientation;
 import com.orfertia.espinosa.rover.utils.InputUtils;
 
+/**
+ * The Class InputUtilsTest.
+ * 
+ * @author David Espinosa
+ */
 public class InputUtilsTest {
 	
+	/**
+	 * Initialize.
+	 */
 	@Before
 	public void initialize() {
 	}
 	
+	/**
+	 * When two rovers are setted then mars with two rovers is created.
+	 */
 	@Test
 	public void whenTwoRoversAreSettedThenMarsWithTwoRoversIsCreated() {
 		
@@ -33,6 +44,9 @@ public class InputUtilsTest {
 		}		
 	}
 	
+	/**
+	 * When exercise input is used then solution is returned.
+	 */
 	@Test
 	public void whenExerciseInputIsUsedThenSolutionIsReturned() {
 		

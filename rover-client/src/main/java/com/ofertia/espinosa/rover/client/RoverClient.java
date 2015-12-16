@@ -1,106 +1,79 @@
 package com.ofertia.espinosa.rover.client;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.util.List;
+
+import com.ofertia.espinosa.rover.client.utils.RoverClientUtils;
+import com.ofertia.espinosa.rover.domain.Rover;
+import com.ofertia.espinosa.rover.jaxb.request.MarsRequest;
+import com.ofertia.espinosa.rover.jaxb.response.MarsResponse;
+import com.orfertia.espinosa.rover.utils.InputUtils;
+import com.orfertia.espinosa.rover.xml.MarsMarshallerUtils;
+import com.orfertia.espinosa.rover.xml.XmlUtils;
 
 /**
  * The Class RoverClient.
+ * 
+ * @author David Espinosa
  */
 public class RoverClient {
 
-    private static final String GET_REQUEST = "GET";
-    private static final String POST_REQUEST = "POST";
-
-    /**
+	/**
      * The main method.
      *
      * @param args the arguments
      */
     public static void main(final String args[]) {
-        
-        final RoverClient roverClient = new RoverClient();
-        
 
-        
-        final String requestType;
-
-        try {
-            roverClient.test();
-            final String retorn = roverClient.httpGet("http://localhost:80/5 5 1 2 N LMLMLMLMM 3 3 E MMRMMRMRRM");
-            System.out.println(retorn);
-        } catch (final Exception e) {
-            e.printStackTrace();
+        if (RoverClientUtils.checkInput(args)) {
+	        final String requestType = args[0];
+	        String url = args[1];
+	        String params = RoverClientUtils.getParamsFromConsole();
+	        
+	        switch (requestType) {
+			case RoverClientUtils.GET_REQUEST:
+				try {
+					System.out.println("Test Output:"+RoverClient.sendGetRequest(url, params));
+				} catch (IOException e) {
+					System.out.println("Error in get request!"+e.getMessage());
+				}
+				break;
+			case RoverClientUtils.POST_REQUEST:
+				try {
+					System.out.println("Test Output:"+RoverClient.sendPostRequest(url, params));					
+				} catch (Exception e) {
+					System.out.println("Error in post request!"+e.getMessage());
+				}
+				break;
+			default:
+				break;
+			}
+        } else {
+        	RoverClient.printHelp();
         }
-        
     }
 
     /**
      * Send get request.
-     */
-    public void sendGetRequest() {
-
-    }
-
-    /**
-     * Send post request.
-     */
-    public void sendPostRequest() {
-
-    }
-
-    /**
-     * Prints the help.
-     */
-    public void printHelp() {
-
-    }
-
-    public boolean checkInput(final String args[]) {
-        
-    	boolean validUrl = false;
-    	boolean validProtocol = false;
-    	boolean checkArgsLength = (args!=null)&&(args.length>=2);
-    	if (checkArgsLength) {
-    		 if ((GET_REQUEST.equals(args[0])||(POST_REQUEST.equals(args[0])))) {
-    			 validProtocol = true;
-    		 } 
-    		 if (isValidURL(args[1])) {
-    			 validUrl = true;
-    		 }
-    	}
-        return (validProtocol&&validUrl);
-    }
-
-    public boolean isValidURL(final String urlStr) {
-        try {
-            final URL url = new URL(urlStr);
-            return true;
-        } catch (final MalformedURLException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Http get.
      *
      * @param urlStr the url str
+     * @param params the params
      * @return the string
      * @throws IOException Signals that an I/O exception has occurred.
      */
-    public String httpGet(final String urlStr) throws IOException {
-
+    public static String sendGetRequest(String urlStr, String params) throws IOException {
+    	
+    	urlStr = urlStr+"?mars="+URLEncoder.encode(params, "UTF-8");
         final URL url = new URL(urlStr);
         final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-        // if (conn.getResponseCode() != 200) {
-        // throw new IOException(conn.getResponseMessage());
-        // }
-
-        // Buffer the result into a string
         final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         final StringBuilder sb = new StringBuilder();
         String line;
@@ -114,36 +87,61 @@ public class RoverClient {
     }
 
     /**
-     * Test.
+     * Post request.
      *
+     * @param urlStr the url str
+     * @param marsInputLine the mars input line
+     * @return the string
      * @throws Exception the exception
      */
-    public void test() throws Exception {
-        final String url = "http://localhost:80/5 5 1 2 N LMLMLMLMM 3 3 E MMRMMRMRRM";
+    public static String getPostRequestResponse(String urlStr, String marsInputLine) throws Exception {
+    	
+    	String unmarshalledMarsResponse = "";
+		URL url = new URL(urlStr);
+	    URLConnection conn = url.openConnection();
+	    conn.setDoOutput(true);
+	    OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());	
+	    writer.write(marsInputLine);
+	    writer.flush();
+	    String line;
+	    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));	    
+	    while ((line = reader.readLine()) != null) {
+	    	unmarshalledMarsResponse += (line);
+	    }
+	    writer.close();
+	    reader.close();
+	    
+    	return unmarshalledMarsResponse;
+    }
+    
+    /**
+     * Send post request.
+     *
+     * @param url the url
+     * @param marsInputLine the mars input line
+     * @return the string
+     * @throws Exception the exception
+     */
+    public static String sendPostRequest(String url, String marsInputLine) throws Exception {
 
-        final URL obj = new URL(url);
-        final HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		MarsRequest marsRequest = XmlUtils.createMarsRequestFromInputLine(marsInputLine);
+		String marshalledMars = MarsMarshallerUtils.marshalMarsRequest(marsRequest);    	
+    	String message = getPostRequestResponse(url, marshalledMars);		
+		MarsResponse marsResponse = MarsMarshallerUtils.unmarshalMarsResponse(new ByteArrayInputStream(message.getBytes("UTF-8")));
+		List<Rover> rovers = XmlUtils.createRoversFromMarsResponse(marsResponse);
+		
+		return InputUtils.createOutputLine(rovers);
+    }
 
-        // optional default is GET
-        con.setRequestMethod("GET");
 
-        // add request header
-        con.setRequestProperty("User-Agent", "Chrome");
-
-        final int responseCode = con.getResponseCode();
-        System.out.println("\nSending 'GET' request to URL : " + url);
-        System.out.println("Response Code : " + responseCode);
-
-        final BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        final StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-
-        // print result
-        System.out.println(response.toString());
+    /**
+     * Prints the help.
+     */
+    public static void printHelp() {
+    	System.out.println("Syntax: java -jar roverClient-jar-with-dependencies.jar [connectiontype] [serviceurl]");
+    	System.out.println("where options are:");
+    	System.out.println("\t connectiontype:[GET|POST]");
+    	System.out.println("\t url:[http://localhost:80|http://http://localhost:8080/rover-rest-server/RestServer]");
+    	System.out.println("Send mail to: espinosa.eduard@gmail.com for further information.");
     }
 }

@@ -1,22 +1,84 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>ofertia.espinosa.mars-rover</groupId>
-    <artifactId>mars-rover</artifactId>
-    <version>1.0.0</version>
-  </parent>
-  <artifactId>rover-client</artifactId>
-  <name>Rover client</name>
-  <description>Rover client to send request GET or POST</description>
-  
-  <dependencies>
-    <dependency>
-        <groupId>ofertia.espinosa.mars-rover</groupId>
-        <artifactId>rover-domain</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>ofertia.espinosa.mars-rover</groupId>
-        <artifactId>rover-controller</artifactId>
-    </dependency>      
-  </dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>ofertia.espinosa.mars-rover</groupId>
+		<artifactId>mars-rover</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>rover-client</artifactId>
+	<name>Rover client</name>
+	<packaging>jar</packaging>
+	<description>Rover client to send GET or POST requests</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>ofertia.espinosa.mars-rover</groupId>
+			<artifactId>rover-domain</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ofertia.espinosa.mars-rover</groupId>
+			<artifactId>rover-controller</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>roverClient</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>com.ofertia.espinosa.rover.client.RoverClient</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

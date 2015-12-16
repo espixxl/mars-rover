@@ -45,6 +45,19 @@ public class MarsMarshallerUtils {
         final Marshaller marshaller = jContext.createMarshaller();
         marshaller.marshal(marsResponse, outputStream);
     }
+    
+    /**
+     * Unmarshal mars response.
+     *
+     * @param inputStream the input stream
+     * @return the mars response
+     * @throws JAXBException the JAXB exception
+     */
+    public static MarsResponse unmarshalMarsResponse(final InputStream inputStream) throws JAXBException {
+    	final JAXBContext jContext = JAXBContext.newInstance(MarsResponse.class);
+    	final MarsResponse marsResponse = (MarsResponse) jContext.createUnmarshaller().unmarshal(inputStream);
+    	return marsResponse;    	
+    }
 
     /**
      * Marshal mars response.
@@ -59,6 +72,22 @@ public class MarsMarshallerUtils {
         final Marshaller marshaller = jContext.createMarshaller();
         final StringWriter stringWriter = new StringWriter();
         marshaller.marshal(marsResponse, stringWriter);
+        return stringWriter.toString();
+    }
+    
+    /**
+     * Marshal mars request.
+     *
+     * @param mars the mars
+     * @return the string
+     * @throws JAXBException the JAXB exception
+     */
+    public static String marshalMarsRequest(final MarsRequest mars) throws JAXBException {
+
+        final JAXBContext jContext = JAXBContext.newInstance(MarsRequest.class);
+        final Marshaller marshaller = jContext.createMarshaller();
+        final StringWriter stringWriter = new StringWriter();
+        marshaller.marshal(mars, stringWriter);
         return stringWriter.toString();
     }
 }

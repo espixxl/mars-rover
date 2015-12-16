@@ -47,10 +47,7 @@ public class RestServer extends HttpServlet {
     @Override
     protected void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
         try {
-            final MarsRequest marsRequest = MarsMarshallerUtils.unmarshalXMLData(request.getInputStream());
-            final MarsResponse marsResponse = this.createResponse(marsRequest);
-            final String xmlResponse = MarsMarshallerUtils.marshalMarsResponse(marsResponse);
-            response.getWriter().append(xmlResponse);
+            response.getWriter().append("This is a post rest service!");
         } catch (final Exception e) {
 
         }
@@ -71,6 +68,7 @@ public class RestServer extends HttpServlet {
             final MarsRequest marsRequest = MarsMarshallerUtils.unmarshalXMLData(request.getInputStream());
             final MarsResponse marsResponse = this.createResponse(marsRequest);
             final String xmlResponse = MarsMarshallerUtils.marshalMarsResponse(marsResponse);
+            response.setContentType("text/xml");
             response.getWriter().append(xmlResponse);
         } catch (final Exception e) {
 

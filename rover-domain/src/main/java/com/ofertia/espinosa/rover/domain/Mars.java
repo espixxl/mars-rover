@@ -6,6 +6,8 @@ import java.util.Map;
 
 /**
  * The Class MarsImpl.
+ * 
+ * @author David Espinosa
  */
 public class Mars {
 
