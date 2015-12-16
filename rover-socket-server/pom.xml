@@ -5,18 +5,7 @@
     <artifactId>mars-rover</artifactId>
     <version>1.0.0</version>
   </parent>
-  <artifactId>rover-controller</artifactId>
-  <name>Rover logical controller</name>
-  
-  <dependencies>
-	<dependency>
-		<groupId>ofertia.espinosa.mars-rover</groupId>
-		<artifactId>rover-domain</artifactId>
-	</dependency>
-	<dependency>
-		<groupId>junit</groupId>
-		<artifactId>junit</artifactId>
-		<scope>test</scope>
-	</dependency>  	
-  </dependencies>
+  <artifactId>rover-socket-server</artifactId>
+  <name>Rover Socket Server</name>
+  <description>Simple socket server</description>
 </project>

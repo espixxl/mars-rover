@@ -10,6 +10,8 @@
   	<module>rover-domain</module>
   	<module>socket-server</module>
   	<module>rover-rest-server</module>
+  	<module>rover-socket-server</module>
+  	<module>rover-client</module>
   </modules>
   
   <properties>

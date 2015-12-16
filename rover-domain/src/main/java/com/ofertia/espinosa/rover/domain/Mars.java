@@ -9,96 +9,93 @@ import java.util.Map;
  */
 public class Mars {
 
-	/** The rovers. */
-	private Map<Integer, Rover> rovers = Collections.synchronizedMap(new HashMap<Integer, Rover>());
-		
-	/** The plateau. */
-	private Plateau plateau;
+    /** The rovers. */
+    private Map<Integer, Rover> rovers = Collections.synchronizedMap(new HashMap<Integer, Rover>());
 
-	/**
-	 * Initialize plateau.
-	 *
-	 * @param plateauWidth the plateau width
-	 * @param plateauHeight the plateau height
-	 */
-	public void initializePlateau(int plateauWidth, int plateauHeight) {
-		this.plateau = new Plateau(plateauWidth, plateauHeight);
-	}
+    /** The plateau. */
+    private Plateau plateau;
 
+    /**
+     * Initialize plateau.
+     *
+     * @param plateauWidth the plateau width
+     * @param plateauHeight the plateau height
+     */
+    public void initializePlateau(final int plateauWidth, final int plateauHeight) {
+        this.plateau = new Plateau(plateauWidth, plateauHeight);
+    }
 
-	/**
-	 * Adds the rover.
-	 *
-	 * @param rover the rover
-	 */
-	public void addRover(Rover rover) {		
-		rovers.put(rover.getRoverId(), rover);
-	}
-	
-	/**
-	 * Adds the rovers.
-	 *
-	 * @param rovers the rovers
-	 */
-	public void addRovers(Rover...rovers) {
-		
-		for (Rover rover: rovers) {
-			this.addRover(rover);
-		}
-	}
-		 
-	/**
-	 * Gets the rover.
-	 *
-	 * @param roverId the rover id
-	 * @return the rover
-	 */
-	public Rover getRover(int roverId) {
-		Rover rover = null;
-		
-		if (rovers.size()>=roverId) {
-			rover = rovers.get(roverId);
-		}
-		
-		return rover;
-	}
+    /**
+     * Adds the rover.
+     *
+     * @param rover the rover
+     */
+    public void addRover(final Rover rover) {
+        this.rovers.put(rover.getRoverId(), rover);
+    }
 
+    /**
+     * Adds the rovers.
+     *
+     * @param rovers the rovers
+     */
+    public void addRovers(final Rover... rovers) {
 
-	/**
-	 * Gets the rovers.
-	 *
-	 * @return the rovers
-	 */
-	public Map<Integer, Rover> getRovers() {
-		return rovers;
-	}
+        for (final Rover rover : rovers) {
+            this.addRover(rover);
+        }
+    }
 
+    /**
+     * Gets the rover.
+     *
+     * @param roverId the rover id
+     * @return the rover
+     */
+    public Rover getRover(final int roverId) {
+        Rover rover = null;
 
-	/**
-	 * Sets the rovers.
-	 *
-	 * @param rovers the rovers
-	 */
-	public void setRovers(Map<Integer, Rover> rovers) {
-		this.rovers = rovers;
-	}
+        if (this.rovers.size() >= roverId) {
+            rover = this.rovers.get(roverId);
+        }
 
-	/**
-	 * Gets the plateau.
-	 *
-	 * @return the plateau
-	 */
-	public Plateau getPlateau() {
-		return plateau;
-	}
+        return rover;
+    }
 
-	/**
-	 * Sets the plateau.
-	 *
-	 * @param plateau the new plateau
-	 */
-	public void setPlateau(Plateau plateau) {
-		this.plateau = plateau;
-	}
-	
+    /**
+     * Gets the rovers.
+     *
+     * @return the rovers
+     */
+    public Map<Integer, Rover> getRovers() {
+        return this.rovers;
+    }
+
+    /**
+     * Sets the rovers.
+     *
+     * @param rovers the rovers
+     */
+    public void setRovers(final Map<Integer, Rover> rovers) {
+        this.rovers = rovers;
+    }
+
+    /**
+     * Gets the plateau.
+     *
+     * @return the plateau
+     */
+    public Plateau getPlateau() {
+        return this.plateau;
+    }
+
+    /**
+     * Sets the plateau.
+     *
+     * @param plateau the new plateau
+     */
+    public void setPlateau(final Plateau plateau) {
+        this.plateau = plateau;
+    }
+
 }

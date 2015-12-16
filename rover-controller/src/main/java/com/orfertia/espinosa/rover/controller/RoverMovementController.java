@@ -16,32 +16,32 @@ import com.orfertia.espinosa.rover.exception.CollisionException;
  */
 public interface RoverMovementController {
 
-	/**
-	 * Move rover.
-	 *
-	 * @param rover the rover
-	 * @param roverMovementSequence the rover movement sequence
-	 * @param plateau the rover plateau
-	 * @return the rover
-	 */
-	public Rover moveRover(Rover rover, RoverMovementSequence roverMovementSequence, Plateau plateau) throws CollisionException;
-	
-	/**
-	 * Move rover.
-	 *
-	 * @param rover the rover
-	 * @param roverMovement the rover movement
-	 * @param plateau the rover plateau
-	 * @return the rover
-	 */
-	public Rover moveRover(Rover rover, RoverMovement roverMovement, Plateau plateau) throws CollisionException;
-	
-	/**
-	 * Check collisions.
-	 *
-	 * @param rovers the rovers
-	 * @param plateau the plateau
-	 * @return true, if successful
-	 */
-	public List<Rover> getCollisionedRovers(Collection<Rover> rovers, Plateau plateau);
+    /**
+     * Move rover.
+     *
+     * @param rover the rover
+     * @param roverMovementSequence the rover movement sequence
+     * @param plateau the rover plateau
+     * @return the rover
+     */
+    public Rover moveRover(Rover rover, RoverMovementSequence roverMovementSequence, Plateau plateau) throws CollisionException;
+
+    /**
+     * Move rover.
+     *
+     * @param rover the rover
+     * @param roverMovement the rover movement
+     * @param plateau the rover plateau
+     * @return the rover
+     */
+    public Rover moveRover(Rover rover, RoverMovement roverMovement, Plateau plateau) throws CollisionException;
+
+    /**
+     * Check collisions.
+     *
+     * @param rovers the rovers
+     * @param plateau the plateau
+     * @return true, if successful
+     */
+    public List<Rover> getCollisionedRovers(Collection<Rover> rovers, Plateau plateau);
 }

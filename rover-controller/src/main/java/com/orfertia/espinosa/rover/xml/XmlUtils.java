@@ -18,67 +18,68 @@ import com.orfertia.espinosa.rover.utils.InputUtils;
  */
 public class XmlUtils {
 
-	/**
-	 * Creates the mars from mars request.
-	 *
-	 * @param marsRequest the mars request
-	 * @return the mars
-	 */
-	public static Mars createMarsFromMarsRequest(MarsRequest marsRequest) {
-		
-		Mars mars = new Mars();		
-		Plateau plateau = new Plateau(marsRequest.getPlateau().getWidth(), marsRequest.getPlateau().getHeight());
-		mars.setPlateau(plateau);
-		MarsRequest.Rovers xmlRovers = marsRequest.getRovers();
-		for (MarsRequest.Rovers.Rover xmlRover: xmlRovers.getRover()) {
-			mars.addRover(createRoverFromXml(xmlRover));
-		}		
-		return mars;
-	}
-	
-	/**
-	 * Creates the rover from xml.
-	 *
-	 * @param xmlRover the xml rover
-	 * @return the rover
-	 */
-	public static Rover createRoverFromXml(MarsRequest.Rovers.Rover xmlRover) {
-		
-		RoverOrientation roverOrientation = InputUtils.createRoverOrientationFromInput(xmlRover.getOrientation());
-		RoverLocation roverLocation = new RoverLocation(xmlRover.getXPosition(), xmlRover.getYPosition(), roverOrientation);
-		Rover rover = new Rover(xmlRover.getId(), roverLocation);
-		RoverMovementSequence roverMovementSequence = InputUtils.createRoverMovementSequenceFromInput(xmlRover.getMovement());
-		rover.setRoverMovementSequence(roverMovementSequence);
-		
-		return rover;		
-	}
-	
-	/**
-	 * Creates the xml from mars.
-	 *
-	 * @param mars the mars
-	 * @return the mars response
-	 */
-	public static MarsResponse createXmlFromMars(Mars mars) {
-		MarsResponse marsResponse = new MarsResponse();
-		for (Rover rover: mars.getRovers().values()) {
-			marsResponse.getRoverFinalPosition().add(createRoverFinalPosition(rover));
-		}
-		return marsResponse;
-	}
-	
-	/**
-	 * Creates the rover final position.
-	 *
-	 * @param rover the rover
-	 * @return the rover final position
-	 */
-	public static RoverFinalPosition createRoverFinalPosition(Rover rover) {
-		RoverFinalPosition roverFinalPosition = new RoverFinalPosition();
-		roverFinalPosition.setId(rover.getRoverId());
-		roverFinalPosition.setOrientation(String.valueOf(InputUtils.getOrientationChar(rover.getRoverLocation().getRoverOrientation())));
-		roverFinalPosition.setXPostion(rover.getRoverLocation().getxPosition());
-		roverFinalPosition.setYPosition(rover.getRoverLocation().getyPosition());
-		return roverFinalPosition;
-	}
+    /**
+     * Creates the mars from mars request.
+     *
+     * @param marsRequest the mars request
+     * @return the mars
+     */
+    public static Mars createMarsFromMarsRequest(final MarsRequest marsRequest) {
+
+        final Mars mars = new Mars();
+        final Plateau plateau = new Plateau(marsRequest.getPlateau().getWidth(), marsRequest.getPlateau().getHeight());
+        mars.setPlateau(plateau);
+        final MarsRequest.Rovers xmlRovers = marsRequest.getRovers();
+        for (final MarsRequest.Rovers.Rover xmlRover : xmlRovers.getRover()) {
+            mars.addRover(createRoverFromXml(xmlRover));
+        }
+        return mars;
+    }
+
+    /**
+     * Creates the rover from xml.
+     *
+     * @param xmlRover the xml rover
+     * @return the rover
+     */
+    public static Rover createRoverFromXml(final MarsRequest.Rovers.Rover xmlRover) {
+
+        final RoverOrientation roverOrientation = InputUtils.createRoverOrientationFromInput(xmlRover.getOrientation());
+        final RoverLocation roverLocation = new RoverLocation(xmlRover.getXPosition(), xmlRover.getYPosition(), roverOrientation);
+        final Rover rover = new Rover(xmlRover.getId(), roverLocation);
+        final RoverMovementSequence roverMovementSequence = InputUtils.createRoverMovementSequenceFromInput(xmlRover.getMovement());
+        rover.setRoverMovementSequence(roverMovementSequence);
+
+        return rover;
+    }
+
+    /**
+     * Creates the xml from mars.
+     *
+     * @param mars the mars
+     * @return the mars response
+     */
+    public static MarsResponse createXmlFromMars(final Mars mars) {
+        final MarsResponse marsResponse = new MarsResponse();
+        for (final Rover rover : mars.getRovers().values()) {
+            marsResponse.getRoverFinalPosition().add(createRoverFinalPosition(rover));
+        }
+        return marsResponse;
+    }
+
+    /**
+     * Creates the rover final position.
+     *
+     * @param rover the rover
+     * @return the rover final position
+     */
+    public static RoverFinalPosition createRoverFinalPosition(final Rover rover) {
+
+        final RoverFinalPosition roverFinalPosition = new RoverFinalPosition();
+        roverFinalPosition.setId(rover.getRoverId());
+        roverFinalPosition.setOrientation(String.valueOf(InputUtils.getOrientationChar(rover.getRoverLocation().getRoverOrientation())));
+        roverFinalPosition.setXPostion(rover.getRoverLocation().getxPosition());
+        roverFinalPosition.setYPosition(rover.getRoverLocation().getyPosition());
+        return roverFinalPosition;
+    }
 }
