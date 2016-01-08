@@ -6,14 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.ofertia.espinosa.rover.domain.Mars;
-import com.ofertia.espinosa.rover.domain.Plateau;
-import com.ofertia.espinosa.rover.domain.Rover;
-import com.ofertia.espinosa.rover.domain.RoverLocation;
-import com.ofertia.espinosa.rover.domain.RoverMovement;
-import com.ofertia.espinosa.rover.domain.RoverMovementSequence;
-import com.ofertia.espinosa.rover.domain.RoverOrientation;
-import com.ofertia.espinosa.rover.domain.RoverRotation;
+import com.espinosa.rover.domain.Mars;
+import com.espinosa.rover.domain.Plateau;
+import com.espinosa.rover.domain.Rover;
+import com.espinosa.rover.domain.RoverLocation;
+import com.espinosa.rover.domain.RoverMovement;
+import com.espinosa.rover.domain.RoverMovementSequence;
+import com.espinosa.rover.domain.RoverOrientation;
+import com.espinosa.rover.domain.RoverRotation;
 
 /**
  * The Class InputUtils.

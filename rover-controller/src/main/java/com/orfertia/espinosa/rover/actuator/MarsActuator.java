@@ -3,9 +3,9 @@ package com.orfertia.espinosa.rover.actuator;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ofertia.espinosa.rover.domain.Mars;
-import com.ofertia.espinosa.rover.domain.Rover;
-import com.ofertia.espinosa.rover.domain.RoverMovementSequence;
+import com.espinosa.rover.domain.Mars;
+import com.espinosa.rover.domain.Rover;
+import com.espinosa.rover.domain.RoverMovementSequence;
 import com.orfertia.espinosa.rover.controller.RoverMovementController;
 import com.orfertia.espinosa.rover.controller.impl.RoverMovementControllerImpl;
 import com.orfertia.espinosa.rover.exception.CollisionException;

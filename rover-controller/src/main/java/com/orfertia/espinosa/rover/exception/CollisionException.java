@@ -2,9 +2,9 @@ package com.orfertia.espinosa.rover.exception;
 
 import java.util.List;
 
-import com.ofertia.espinosa.rover.domain.Plateau;
-import com.ofertia.espinosa.rover.domain.Rover;
-import com.ofertia.espinosa.rover.domain.RoverLocation;
+import com.espinosa.rover.domain.Plateau;
+import com.espinosa.rover.domain.Rover;
+import com.espinosa.rover.domain.RoverLocation;
 
 /**
  * The Class Collision Exception.

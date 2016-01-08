@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.ofertia.espinosa.rover.domain.Mars;
-import com.ofertia.espinosa.rover.domain.Plateau;
-import com.ofertia.espinosa.rover.domain.Rover;
-import com.ofertia.espinosa.rover.domain.RoverLocation;
-import com.ofertia.espinosa.rover.domain.RoverMovementSequence;
-import com.ofertia.espinosa.rover.domain.RoverOrientation;
-import com.ofertia.espinosa.rover.jaxb.request.MarsRequest;
-import com.ofertia.espinosa.rover.jaxb.request.MarsRequest.Rovers;
-import com.ofertia.espinosa.rover.jaxb.response.MarsResponse;
-import com.ofertia.espinosa.rover.jaxb.response.MarsResponse.RoverFinalPosition;
+import com.espinosa.rover.domain.Mars;
+import com.espinosa.rover.domain.Plateau;
+import com.espinosa.rover.domain.Rover;
+import com.espinosa.rover.domain.RoverLocation;
+import com.espinosa.rover.domain.RoverMovementSequence;
+import com.espinosa.rover.domain.RoverOrientation;
+import com.espinosa.rover.jaxb.request.MarsRequest;
+import com.espinosa.rover.jaxb.request.MarsRequest.Rovers;
+import com.espinosa.rover.jaxb.response.MarsResponse;
+import com.espinosa.rover.jaxb.response.MarsResponse.RoverFinalPosition;
 import com.orfertia.espinosa.rover.utils.InputUtils;
 
 /**
@@ -55,7 +55,7 @@ public class XmlUtils {
         final int plateauWidth = Integer.valueOf(inputTokens[0]);
         final int plateauHeigth = Integer.valueOf(inputTokens[1]);
 
-        final com.ofertia.espinosa.rover.jaxb.request.MarsRequest.Plateau xmlPlateau = new com.ofertia.espinosa.rover.jaxb.request.MarsRequest.Plateau();
+        final com.espinosa.rover.jaxb.request.MarsRequest.Plateau xmlPlateau = new com.espinosa.rover.jaxb.request.MarsRequest.Plateau();
     	xmlPlateau.setWidth(plateauWidth);
     	xmlPlateau.setHeight(plateauHeigth);
     	
@@ -76,7 +76,7 @@ public class XmlUtils {
     public static Rovers createXmlRoversFromInput(final String message[]) {
     	
     	final Rovers xmlRovers = new Rovers();
-        for (final com.ofertia.espinosa.rover.jaxb.request.MarsRequest.Rovers.Rover xmlRover : createXmlRoversFromInput(0, message)) {
+        for (final com.espinosa.rover.jaxb.request.MarsRequest.Rovers.Rover xmlRover : createXmlRoversFromInput(0, message)) {
         	xmlRovers.getRover().add(xmlRover);
         }
         return xmlRovers;
@@ -89,14 +89,14 @@ public class XmlUtils {
      * @param message the message
      * @return the list
      */
-    public static List<com.ofertia.espinosa.rover.jaxb.request.MarsRequest.Rovers.Rover> createXmlRoversFromInput(final int initialRoverId, final String message[]) {
+    public static List<com.espinosa.rover.jaxb.request.MarsRequest.Rovers.Rover> createXmlRoversFromInput(final int initialRoverId, final String message[]) {
 
-        final List<com.ofertia.espinosa.rover.jaxb.request.MarsRequest.Rovers.Rover> xmlRovers = new ArrayList<com.ofertia.espinosa.rover.jaxb.request.MarsRequest.Rovers.Rover>();
+        final List<com.espinosa.rover.jaxb.request.MarsRequest.Rovers.Rover> xmlRovers = new ArrayList<com.espinosa.rover.jaxb.request.MarsRequest.Rovers.Rover>();
 
         final int roverXPosition = Integer.valueOf(message[0]);
         final int roverYPosition = Integer.valueOf(message[1]);
         
-        com.ofertia.espinosa.rover.jaxb.request.MarsRequest.Rovers.Rover xmlRover = new com.ofertia.espinosa.rover.jaxb.request.MarsRequest.Rovers.Rover();
+        com.espinosa.rover.jaxb.request.MarsRequest.Rovers.Rover xmlRover = new com.espinosa.rover.jaxb.request.MarsRequest.Rovers.Rover();
         xmlRover.setId(initialRoverId);
         xmlRover.setOrientation(message[2]);
         xmlRover.setMovement(message[3]);

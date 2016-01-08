@@ -3,10 +3,10 @@ package com.orfertia.espinosa.rover.controller;
 import java.util.Collection;
 import java.util.List;
 
-import com.ofertia.espinosa.rover.domain.Plateau;
-import com.ofertia.espinosa.rover.domain.Rover;
-import com.ofertia.espinosa.rover.domain.RoverMovement;
-import com.ofertia.espinosa.rover.domain.RoverMovementSequence;
+import com.espinosa.rover.domain.Plateau;
+import com.espinosa.rover.domain.Rover;
+import com.espinosa.rover.domain.RoverMovement;
+import com.espinosa.rover.domain.RoverMovementSequence;
 import com.orfertia.espinosa.rover.exception.CollisionException;
 
 /**

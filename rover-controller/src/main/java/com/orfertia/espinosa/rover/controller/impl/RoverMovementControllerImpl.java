@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import com.ofertia.espinosa.rover.domain.Plateau;
-import com.ofertia.espinosa.rover.domain.Rover;
-import com.ofertia.espinosa.rover.domain.RoverLocation;
-import com.ofertia.espinosa.rover.domain.RoverMovement;
-import com.ofertia.espinosa.rover.domain.RoverMovementSequence;
+import com.espinosa.rover.domain.Plateau;
+import com.espinosa.rover.domain.Rover;
+import com.espinosa.rover.domain.RoverLocation;
+import com.espinosa.rover.domain.RoverMovement;
+import com.espinosa.rover.domain.RoverMovementSequence;
 import com.orfertia.espinosa.rover.controller.RoverLocationController;
 import com.orfertia.espinosa.rover.controller.RoverMovementController;
 import com.orfertia.espinosa.rover.exception.CollisionException;
@@ -26,8 +26,8 @@ public class RoverMovementControllerImpl implements RoverMovementController {
     /*
      * (non-Javadoc)
      * 
-     * @see com.orfertia.espinosa.rover.controller.RoverMovementController#moveRover(com.ofertia.espinosa.rover.domain.Rover,
-     * com.ofertia.espinosa.rover.domain.RoverMovementSequence)
+     * @see com.orfertia.espinosa.rover.controller.RoverMovementController#moveRover(com.espinosa.rover.domain.Rover,
+     * com.espinosa.rover.domain.RoverMovementSequence)
      */
     @Override
     public Rover moveRover(final Rover rover, final RoverMovementSequence roverMovementSequence, final Plateau roverPlateau)
@@ -43,8 +43,8 @@ public class RoverMovementControllerImpl implements RoverMovementController {
     /*
      * (non-Javadoc)
      * 
-     * @see com.orfertia.espinosa.rover.controller.RoverMovementController#moveRover(com.ofertia.espinosa.rover.domain.Rover,
-     * com.ofertia.espinosa.rover.domain.RoverMovement, com.ofertia.espinosa.rover.domain.Plateau)
+     * @see com.orfertia.espinosa.rover.controller.RoverMovementController#moveRover(com.espinosa.rover.domain.Rover,
+     * com.espinosa.rover.domain.RoverMovement, com.espinosa.rover.domain.Plateau)
      */
     @Override
     public Rover moveRover(final Rover rover, final RoverMovement roverMovement, final Plateau roverPlateau) throws CollisionException {
@@ -62,7 +62,7 @@ public class RoverMovementControllerImpl implements RoverMovementController {
      * (non-Javadoc)
      * 
      * @see com.orfertia.espinosa.rover.controller.RoverMovementController#getCollisionedRovers(java.util.Collection,
-     * com.ofertia.espinosa.rover.domain.Plateau)
+     * com.espinosa.rover.domain.Plateau)
      */
     @Override
     public List<Rover> getCollisionedRovers(final Collection<Rover> rovers, final Plateau plateau) {

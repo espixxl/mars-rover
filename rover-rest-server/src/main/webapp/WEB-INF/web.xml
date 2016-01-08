@@ -7,7 +7,7 @@
     <servlet>
         <servlet-name>RestServer</servlet-name>
         <servlet-class>
-            com.ofertia.espinosa.rover.server.RestServer
+            com.espinosa.rover.server.RestServer
         </servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>

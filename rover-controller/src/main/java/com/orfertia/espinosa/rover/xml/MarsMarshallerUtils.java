@@ -8,8 +8,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
-import com.ofertia.espinosa.rover.jaxb.request.MarsRequest;
-import com.ofertia.espinosa.rover.jaxb.response.MarsResponse;
+import com.espinosa.rover.jaxb.request.MarsRequest;
+import com.espinosa.rover.jaxb.response.MarsResponse;
 
 /**
  * The Class MarsUnmarshaller.

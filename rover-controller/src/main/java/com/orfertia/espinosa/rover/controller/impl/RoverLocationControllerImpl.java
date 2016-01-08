@@ -2,11 +2,11 @@ package com.orfertia.espinosa.rover.controller.impl;
 
 import java.util.List;
 
-import com.ofertia.espinosa.rover.domain.Plateau;
-import com.ofertia.espinosa.rover.domain.RoverLocation;
-import com.ofertia.espinosa.rover.domain.RoverMovement;
-import com.ofertia.espinosa.rover.domain.RoverOrientation;
-import com.ofertia.espinosa.rover.domain.RoverRotation;
+import com.espinosa.rover.domain.Plateau;
+import com.espinosa.rover.domain.RoverLocation;
+import com.espinosa.rover.domain.RoverMovement;
+import com.espinosa.rover.domain.RoverOrientation;
+import com.espinosa.rover.domain.RoverRotation;
 import com.orfertia.espinosa.rover.controller.RoverLocationController;
 
 /**
@@ -19,8 +19,8 @@ public class RoverLocationControllerImpl implements RoverLocationController {
     /*
      * (non-Javadoc)
      * 
-     * @see com.orfertia.espinosa.rover.controller.RoverLocationController#isApplicable(com.ofertia.espinosa.rover.domain.RoverLocation,
-     * com.ofertia.espinosa.rover.domain.RoverMovement, com.ofertia.espinosa.rover.domain.RoverPlateau)
+     * @see com.orfertia.espinosa.rover.controller.RoverLocationController#isApplicable(com.espinosa.rover.domain.RoverLocation,
+     * com.espinosa.rover.domain.RoverMovement, com.espinosa.rover.domain.RoverPlateau)
      */
     @Override
     public boolean isApplicable(final RoverLocation roverLocation, final RoverMovement roverMovement, final Plateau roverPlateau) {
@@ -32,8 +32,8 @@ public class RoverLocationControllerImpl implements RoverLocationController {
     /*
      * (non-Javadoc)
      * 
-     * @see com.orfertia.espinosa.rover.controller.RoverLocationController#applyMovement(com.ofertia.espinosa.rover.domain.RoverLocation,
-     * com.ofertia.espinosa.rover.domain.RoverMovement)
+     * @see com.orfertia.espinosa.rover.controller.RoverLocationController#applyMovement(com.espinosa.rover.domain.RoverLocation,
+     * com.espinosa.rover.domain.RoverMovement)
      */
     @Override
     public RoverLocation applyMovement(final RoverLocation roverLocation, final RoverMovement roverMovement) {
@@ -65,8 +65,8 @@ public class RoverLocationControllerImpl implements RoverLocationController {
      * (non-Javadoc)
      * 
      * @see
-     * com.orfertia.espinosa.rover.controller.RoverLocationController#applyRoverRotation(com.ofertia.espinosa.rover.domain.RoverOrientation,
-     * com.ofertia.espinosa.rover.domain.RoverMovementRotation)
+     * com.orfertia.espinosa.rover.controller.RoverLocationController#applyRoverRotation(com.espinosa.rover.domain.RoverOrientation,
+     * com.espinosa.rover.domain.RoverMovementRotation)
      */
     @Override
     public RoverOrientation applyRoverRotation(final RoverOrientation roverOrientation, final List<RoverRotation> roverMovementRotations) {
@@ -86,8 +86,8 @@ public class RoverLocationControllerImpl implements RoverLocationController {
      * (non-Javadoc)
      * 
      * @see
-     * com.orfertia.espinosa.rover.controller.RoverLocationController#existsPlateauCollision(com.ofertia.espinosa.rover.domain.RoverLocation
-     * , com.ofertia.espinosa.rover.domain.Plateau)
+     * com.orfertia.espinosa.rover.controller.RoverLocationController#existsPlateauCollision(com.espinosa.rover.domain.RoverLocation
+     * , com.espinosa.rover.domain.Plateau)
      */
     @Override
     public boolean existsPlateauCollision(final RoverLocation roverLocation, final Plateau roverPlateau) {

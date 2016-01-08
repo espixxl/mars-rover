@@ -2,11 +2,11 @@ package com.orfertia.espinosa.rover.controller;
 
 import java.util.List;
 
-import com.ofertia.espinosa.rover.domain.Plateau;
-import com.ofertia.espinosa.rover.domain.RoverLocation;
-import com.ofertia.espinosa.rover.domain.RoverMovement;
-import com.ofertia.espinosa.rover.domain.RoverOrientation;
-import com.ofertia.espinosa.rover.domain.RoverRotation;
+import com.espinosa.rover.domain.Plateau;
+import com.espinosa.rover.domain.RoverLocation;
+import com.espinosa.rover.domain.RoverMovement;
+import com.espinosa.rover.domain.RoverOrientation;
+import com.espinosa.rover.domain.RoverRotation;
 
 /**
  * The Interface RoverLocationController.
